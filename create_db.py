@@ -1,5 +1,7 @@
 from psycopg2 import connect, sql, OperationalError, DatabaseError
 
+from models import User, Message
+
 USER = "postgres"
 PASSWORD = "coderslab"
 HOST = "localhost"
@@ -53,7 +55,6 @@ try:
     print("Messages table created")
 except DatabaseError as error:
     print(error)
-
 
 cnx.close()
 

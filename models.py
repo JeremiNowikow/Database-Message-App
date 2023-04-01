@@ -182,13 +182,16 @@ class Message:
 
     # returns a list of all messages from the database as objects of the Message class
     @staticmethod
-    def load_all_messages(cursor):
-
-        sql = """SELECT id, from_id, to_id, creation_date, text FROM "Messages" """
+    def load_all_messages(cursor, user_id=None):
+        if user_id:
+            sql = """SELECT id, from_id, to_id, creation_date, text FROM "Messages" WHERE to_id=%s """
+            cursor.execute(sql, (user_id,))
+        else:
+            sql = """SELECT id, from_id, to_id, creation_date, text FROM "Messages" """
+            cursor.execute(sql)
 
         messages = []
 
-        cursor.execute(sql)
 
         for row in cursor.fetchall():
             id_, from_id, to_id, creation_date, text = row

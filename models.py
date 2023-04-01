@@ -131,7 +131,7 @@ class User:
     # deletes the User object and the row in the database that possesses the same id
     def delete(self, cursor):
 
-        sql = "DELETE FROM Users WHERE id=%s"
+        sql = """DELETE FROM "Users" WHERE id=%s"""
 
         cursor.execute(sql, (self.id,))
 
@@ -152,6 +152,7 @@ class Message:
     def id(self):
         return self._id
 
+    # Saves a message to the database
     def save_to_db(self, cursor):
         if self._id == -1:
 
@@ -179,6 +180,7 @@ class Message:
 
             return True
 
+    # returns a list of all messages from the database as objects of the Message class
     @staticmethod
     def load_all_messages(cursor):
 

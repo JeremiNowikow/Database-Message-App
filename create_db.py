@@ -23,7 +23,7 @@ query_create_database = sql.SQL("""
 query_create_users_table = sql.SQL("""
     CREATE TABLE IF NOT EXISTS {table_name}(
         ID SERIAL PRIMARY KEY,
-        username VARCHAR(255),
+        username VARCHAR(255) UNIQUE,
         hashed_password VARCHAR(80)
         
     )
